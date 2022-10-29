@@ -1,4 +1,4 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 let stock = [];
 
 const tabla = document.getElementById("items");
@@ -8,6 +8,7 @@ const ordenar = document.getElementById("ordenar");
 const vaciar = document.getElementById("vaciar");
 const productosEnStock = document.getElementById("productos");
 
+listadoUpdate();
 
 stock.push(new Producto("Remera", 1000));
 stock.push(new Producto("Jean", 1700));
@@ -20,8 +21,7 @@ stock.forEach((producto) => {
     option.innerText = `${producto.nombre} $${producto.precio}`
     option.value = stock.indexOf(producto); ///nos devuelve el indice en el array
     productosEnStock.appendChild(option); ///le agregamos al select el option
-})
-
+});
 
 function newRow(item) {
     let row = document.createElement("tr");
@@ -159,5 +159,6 @@ vaciar.onclick = () => {
   listadoUpdate();
   localStorage.setItem("carrito",JSON.stringify(carrito));
 };
+
 
 
