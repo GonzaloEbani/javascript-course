@@ -1,0 +1,11 @@
+body {
+    font-family: "Mulish", sans-serif;
+    background: linear-gradient(to right, #00416a, #799f0c, #ffe000);
+    overflow: scroll;
+    position: relative;
+    min-height: 100vh;
+  }
+
+h1 {
+color: #799f0c;
+}
