@@ -1,91 +1,97 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap"
-    rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600&display=swap"
-    rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./main.css" />
     <title>LimaLimon | Tienda de Ropa</title>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./productoClass.js"></script>
     <script src="./itemClass.js"></script>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <header class="container-fluid">
-        <div class="row tituloPortada">
-          <a class="col-5 p-2 col-lg-3 d-block tituloPortada" href="./index.html">
+      <div class="row">
+        <div class="col-10 tituloPortada">
+          <a class="p-2 col-lg-3 d-block tituloPortada" href="./index.html">
             <h1 class="m-0" id="tituloPrincipal">LimaLimon</h1>
           </a>
         </div>
+        <div class="col-2 ms-auto p-2" id="user"></div>
+      </div>
     </header>
     <main>
-    <div class="container m-3 row">
+      <div class="container m-3 row">
         <div class="container m-1 col">
-            <form id="agregar">
-                <label for="productos">Elija un producto</label>
+          <form id="agregar">
+            <label for="productos">Elija un producto</label>
 
-                <select id="productos" class="form-control">
-                </select>
-                <br>
-                <button class="btn btn-primary">Agregar</button>
-            </form>
+            <select id="productos" class="form-control"></select>
+            <br />
+            <button class="btn btn-primary">Agregar</button>
+          </form>
         </div>
         <div class="container m-1 col">
-            <form id="descuento">
-                <div class="form-group">
-                    <label for="descuento">Cupon de descuento</label>
-                    <input type="string" id="cuponDescuento" class="form-control">
-                </div>
-                <button class="btn btn-primary">Aplicar Cupon</button>
-            </form>
+          <form id="descuento">
+            <div class="form-group">
+              <label for="descuento">Cupon de descuento</label>
+              <input type="string" id="cuponDescuento" class="form-control" />
+            </div>
+            <button class="btn btn-primary">Aplicar Cupon</button>
+          </form>
         </div>
         <div class="container m-1">
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Operacion</th>
-                    </tr>
-                </thead>
-                <tbody id="items">
-                </tbody>
-                <tfoot class="table-dark">
-                    <tr>
-                        <th>Total: </th>
-                        <th></th>
-                        <th id="total"></th>
-                        <th></th>
-                    </tr>
-                </tfoot>
-            </table>
+          <table class="table table-striped">
+            <thead class="table-dark">
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Operacion</th>
+              </tr>
+            </thead>
+            <tbody id="items"></tbody>
+            <tfoot class="table-dark">
+              <tr>
+                <th>Total:</th>
+                <th></th>
+                <th></th>
+                <th id="total"></th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
         </div>
         <div class="container m-1">
-            <button id="ordenar" class="btn btn-primary">
-                Ordenar
-            </button>
-            <button id="vaciar" class="btn btn-primary">
-                Vaciar
-            </button>
+          <button id="ordenar" class="btn btn-primary">Ordenar</button>
+          <button id="vaciar" class="btn btn-primary">Vaciar</button>
         </div>
-    </div>
-    <script src="./app.js"></script>
+      </div>
+      <script src="./app.js"></script>
     </main>
-</body>
-
+  </body>
 </html>

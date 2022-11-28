@@ -35,14 +35,22 @@ function newRow(item) {
   let row = document.createElement("tr");
   let pos = carrito.indexOf(item); ///el indice en el carrito
 
-  ///creo celda con NOMBRE
+  ///creo celda con IMAGEN
   let celda = document.createElement("td");
+  let creaImg = document.createElement("img");
+  creaImg.setAttribute("src", item.producto.imagen);
+  creaImg.setAttribute("alt", "Imagen del Producto");
+  creaImg.setAttribute("class", "prodImg");
+  celda.append(creaImg);
+  row.append(celda); ///agrego la imagen al producto
+
+  ///creo celda con NOMBRE
+  celda = document.createElement("td");
   celda.innerText = item.producto.nombre;
-  row.append(celda); ///agregue el nombre
+  row.append(celda); ///agrego el nombre
 
   ///creo la celda CANTIDAD
   celda = document.createElement("td");
-  celda.innerText = item.cantidad;
 
   ///le agrego los botones INCREMENTO y DECREMENTO
   let botonIncremento = document.createElement("button");
@@ -67,11 +75,12 @@ function newRow(item) {
     }
   };
 
-  celda.append(botonIncremento);
   celda.append(botonDecremento);
+  celda.append(item.cantidad);
+  celda.append(botonIncremento);
   row.append(celda);
 
-  ///creo la celda precio
+  ///creacion de la celda Precio
   celda = document.createElement("td");
   celda.innerText = item.producto.precio;
   row.append(celda);
@@ -116,7 +125,9 @@ agregar.addEventListener("submit", (e) => {
   e.preventDefault();
   let producto = stock[productosEnStock.value];
 
-  let index = carrito.findIndex((element) => element.producto.nombre == producto.nombre);
+  let index = carrito.findIndex(
+    (element) => element.producto.nombre == producto.nombre
+  );
   if (index != -1) {
     carrito[index].cantidad += 1;
     listadoUpdate();
@@ -138,7 +149,8 @@ descuento.addEventListener("submit", (e) => {
       return new Item(
         new Producto(
           item.producto.nombre,
-          item.producto.precio - item.producto.precio * 0.2
+          item.producto.precio - item.producto.precio * 0.2,
+          item.producto.imagen
         ),
         item.cantidad
       );
@@ -146,10 +158,10 @@ descuento.addEventListener("submit", (e) => {
     listadoUpdate();
   } else {
     Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Cupon no valido!',
-      })
+      icon: "error",
+      title: "Oops...",
+      text: "Cupon no valido!",
+    });
   }
   localStorage.setItem("carrito", JSON.stringify(carrito));
 });
@@ -160,6 +172,7 @@ ordenar.onclick = () => {
     return actual.producto.nombre.localeCompare(siguiente.producto.nombre);
   });
   listadoUpdate();
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
 /* Vaciar carrito */
@@ -168,3 +181,23 @@ vaciar.onclick = () => {
   listadoUpdate();
   localStorage.setItem("carrito", JSON.stringify(carrito));
 };
+
+/* Usuario en sesión */
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "d7094aa7a0mshcddc8a3d58184cfp1ad369jsn2c7978ccf8fb",
+    "X-RapidAPI-Host": "random-user.p.rapidapi.com",
+  },
+};
+
+fetch("https://random-user.p.rapidapi.com/getuser", options)
+  .then((response) => response.json())
+  .then((data) => {
+    let user = document.getElementById("user");
+    user.innerHTML = `
+            <p class="d-flex">${data.results[0].name.first} ${data.results[0].name.last}</p>
+            <img class="imgUser d-flex" src='${data.results[0].picture.thumbnail}'/>
+        `;
+  })
+  .catch((err) => console.error(err));

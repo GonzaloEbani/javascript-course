@@ -9,3 +9,12 @@ body {
 h1 {
 color: #799f0c;
 }
+
+.prodImg {
+  width: 60px;
+  height: 60px;
+}
+
+.imgUser {
+  border-radius: 8px;
+}
